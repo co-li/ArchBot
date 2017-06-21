@@ -110,7 +110,7 @@ class General:
         pkgs = [['Name','Repo','Arch']]
         pkgsinfos = [['Name','Repo','Arch','Version','Description','URL']]
         
-        async with aiohttp.get('https://aur.archlinux.org/rpc/?v=5&type=search&arg={0}'.format(query)) as r:
+        async with aiohttp.get('https://aur.archlinux.org/rpc.php?type=search&arg={0}'.format(query)) as r:
                 ar = await r.json()
                 ar = ar['results']
                 print(len(ar))
