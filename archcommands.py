@@ -184,3 +184,12 @@ class General:
     @commands.command(pass_context=True)
     async def wiki(self, ctx, *, query=None):
         """Search for an article from the ArchWiki"""
+        if query is None:
+            return await self.bot.say('Invalid amount of arguments passed.')
+
+        await self.bot.say('Searching for {0} in the ArchWiki.'.format(query))
+        
+        async with aiohttp.get('https://wiki.archlinux.org/api.php?action=opensearch&format=json&search{0}'.format(query)) as r:
+        ar = await r.json()
+        ar = ar['{0}'.format(query)]
+        print(ar)
