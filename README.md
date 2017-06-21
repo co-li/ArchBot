@@ -1,9 +1,9 @@
-## ArchBot
+# ArchBot
 A bot for searching the ArchWiki, Arch Linux packages, and AUR
 The prefix and bot token are changed through a `config.json` file
 An example has been provided for you in `config.json.example`
 
-# Requirements
+## Requirements
 **ArchBot** requires:
 - [Python 3.5 or newer](https://www.python.org/)
 - [Discord.py](https://github.com/Rapptz/discord.py)
