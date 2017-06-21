@@ -45,16 +45,14 @@ class General:
             result = ''
             for cnt, i in enumerate(pkgs):
                 print(i)
-                if cnt < 21:
-                    for _cnt, ii in enumerate(pkgsinfos):
-                        if _cnt < 20:
-                            if i[0] != 'Name' and i[1] != 'Repo' and i[2] != 'Arch':
-                                if i[1] != Repo and i[2] != Arch and i[0] != Name:
-                                    result += '#' + str(Relevance) + '  Repo: ' + i[1] + '  | Arch: ' + i[2] + '  | Name: ' + i[0] + "\n"
-                                    Repo = i[1]
-                                    Arch = i[2]
-                                    Name = i[0]
-                                    Relevance += 1
+                for _cnt, ii in enumerate(pkgsinfos):
+                    if i[0] != 'Name' and i[1] != 'Repo' and i[2] != 'Arch':
+                        if i[1] != Repo and i[2] != Arch and i[0] != Name:
+                            result += '#' + str(Relevance) + '  Repo: ' + i[1] + '  | Arch: ' + i[2] + '  | Name: ' + i[0] + "\n"
+                            Repo = i[1]
+                            Arch = i[2]
+                            Name = i[0]
+                            Relevance += 1
             
             pkgmessage = discord.Embed(title='Reply with the name of one of the following package names within 30 seconds to get more information',description=result)
             await self.bot.send_message(ctx.message.channel, embed=pkgmessage)
@@ -129,16 +127,13 @@ class General:
             result = ''
             for cnt, i in enumerate(pkgs):
                 print(i)
-                if cnt < 21:
-                    for _cnt, ii in enumerate(pkgsinfos):
-                        if _cnt < 20:
-                            if i[0] != 'Name' and i[1] != 'Repo' and i[2] != 'Arch':
-                                if i[1] != Repo and i[2] != Arch and i[0] != Name:
-                                    result += '#' + str(Relevance) + '  Repo: ' + i[1] + '  | Arch: ' + i[2] + '  | Name: ' + i[0] + "\n"
-                                    Repo = i[1]
-                                    Arch = i[2]
-                                    Name = i[0]
-                                    Relevance += 1
+                if i[0] != 'Name' and i[1] != 'Repo' and i[2] != 'Arch':
+                    if i[1] != Repo and i[2] != Arch and i[0] != Name:
+                        result += '#' + str(Relevance) + '  Repo: ' + i[1] + '  | Arch: ' + i[2] + '  | Name: ' + i[0] + "\n"
+                        Repo = i[1]
+                        Arch = i[2]
+                        Name = i[0]
+                        Relevance += 1
             
             pkgmessage = discord.Embed(title='Reply with the name of one of the following package names within 30 seconds to get more information',description=result)
             await self.bot.send_message(ctx.message.channel, embed=pkgmessage)
