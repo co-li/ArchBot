@@ -119,7 +119,7 @@ class General:
                         if not res['Name'] in pkgs:
                             pkgs.append([res['Name'],'AUR','any'])
                             pkgsinfos.append([res['Name'],'AUR','any',res['Version'],res['Description'],res['URL']])
-                            Name = res['Name']
+                            #Name = res['Name']
                         else:
                             count -= 1
         
