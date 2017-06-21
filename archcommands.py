@@ -14,6 +14,7 @@ class General:
 
     @commands.command(pass_context=True)
     async def repos(self, ctx, *, query=None):
+        """Search for a package from the Arch Linux repositories"""
         Repo = 'Repo'
         Arch = 'Arch'
         Name = 'Name'
@@ -33,7 +34,7 @@ class General:
                 ar = ar['results']
                 print(len(ar))
                 for count, res in enumerate(ar):
-                    if count < 21:
+                    if count < 20:
                         if not res['pkgname'] in pkgs:
                             pkgs.append([res['pkgname'],res['repo'],res['arch']])
                             pkgsinfos.append([res['pkgname'],res['repo'],res['arch'],res['pkgver']+"-"+res['pkgrel'],res['pkgdesc'],res['url']])
@@ -96,6 +97,7 @@ class General:
         
     @commands.command(pass_context=True)
     async def aur(self, ctx, *, query=None):
+        """Search for a package from the AUR"""
         Repo = 'Repo'
         Arch = 'Arch'
         Name = 'Name'
@@ -117,7 +119,7 @@ class General:
                 print(ar)
                 for count, res in enumerate(ar):
                     print(count)
-                    if count < 21:
+                    if count < 20:
                         print(res)
                         if not res['Name'] in pkgs:
                             pkgs.append([res['Name'],'AUR','any'])
