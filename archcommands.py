@@ -47,7 +47,7 @@ class General:
                 print(i)
                 for _cnt, ii in enumerate(pkgsinfos):
                     if i[0] != 'Name' and i[1] != 'Repo' and i[2] != 'Arch':
-                        if i[1] != Repo and i[2] != Arch and i[0] != Name:
+                        if i[1] != Repo or i[2] != Arch or i[0] != Name:
                             result += '#' + str(Relevance) + '  Repo: ' + i[1] + '  | Arch: ' + i[2] + '  | Name: ' + i[0] + "\n"
                             Repo = i[1]
                             Arch = i[2]
@@ -128,7 +128,7 @@ class General:
             for cnt, i in enumerate(pkgs):
                 print(i)
                 if i[0] != 'Name' and i[1] != 'Repo' and i[2] != 'Arch':
-                    if i[1] != Repo and i[2] != Arch and i[0] != Name:
+                    if i[1] != Repo or i[2] != Arch or i[0] != Name:
                         result += '#' + str(Relevance) + '  Repo: ' + i[1] + '  | Arch: ' + i[2] + '  | Name: ' + i[0] + "\n"
                         Repo = i[1]
                         Arch = i[2]
