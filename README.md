@@ -1,8 +1,8 @@
-## ArchBot
-A bot for searching the ArchWiki, Arch Linux packages, and AUR
+# ArchBot
+A Discord bot written in Python for searching the ArchWiki, Arch Linux packages, and AUR
 Currently, the only way to change the bot prefix is by editing `bot.py`
 
-# Requirements
+## Requirements
 **ArchBot** requires:
 - [Python 3.5 or newer](https://www.python.org/)
 - [Discord.py](https://github.com/Rapptz/discord.py)
