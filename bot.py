@@ -9,13 +9,17 @@ import logging
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 
+# Set bot description
 description = '''ArchBot is a Discord bot written in Python for searching the ArchWiki, Arch Linux package repositories, and AUR'''
 
-# Set bot token
-token = 'Your bot token'
+# Open configuration file
+with open('./config.json', 'r') as configjson:
+    config = json.load(configjson)
 
-# Set bot prefix
-prefix = 'sudo '
+# Set prefix
+prefix = config["prefix_settings"]["prefix"]
+if config["prefix_settings"]["use_space"] == True:
+    prefix = prefix + ' '
 
 # Create bot
 bot = commands.Bot(command_prefix=prefix, description=description)
@@ -51,4 +55,4 @@ def timedelta_str(dt):
         else:
             return '{0} days, {1} hours, {2} minutes and {3} seconds.'.format(days,hours,minutes,sec)
 
-bot.run(token)
+bot.run(config['token'])
