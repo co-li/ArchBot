@@ -34,10 +34,10 @@ class General:
                 print(len(ar))
                 for count, res in enumerate(ar):
                     if count > 1:
-                        if not res['Name'] in pkgs:
-                            pkgs.append([res['Name'],'AUR','any'])
-                            pkgsinfos.append([res['Name'],'AUR','any',res['Version'],res['Description'],res['URL']])
-                            Name = res['Name']
+                        if not res['pkgname'] in pkgs:
+                            pkgs.append([res['pkgname'],res['repo'],res['arch']])
+                            pkgsinfos.append([res['pkgname'],res['repo'],res['arch'],res['pkgver']+"-"+res['pkgrel'],res['pkgdesc'],res['url']])
+                            pkgname = res['pkgname']
                         else:
                             count -= 1
         
@@ -118,10 +118,10 @@ class General:
                 print(len(ar))
                 for count, res in enumerate(ar):
                     if count > 1:
-                        if not res['pkgname'] in pkgs:
-                            pkgs.append([res['pkgname'],res['repo'],res['arch']])
-                            pkgsinfos.append([res['pkgname'],res['repo'],res['arch'],res['pkgver']+"-"+res['pkgrel'],res['pkgdesc'],res['url']])
-                            pkgname = res['pkgname']
+                        if not res['Name'] in pkgs:
+                            pkgs.append([res['Name'],'AUR','any'])
+                            pkgsinfos.append([res['Name'],'AUR','any',res['Version'],res['Description'],res['URL']])
+                            Name = res['Name']
                         else:
                             count -= 1
         
