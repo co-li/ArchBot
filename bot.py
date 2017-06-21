@@ -6,6 +6,8 @@ import json
 import datetime
 import logging
 
+import archcommands
+
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 
@@ -54,5 +56,7 @@ def timedelta_str(dt):
             return '{0} days, {1} hours, {2} minute and {3} seconds.'.format(days,hours,minutes,sec)
         else:
             return '{0} days, {1} hours, {2} minutes and {3} seconds.'.format(days,hours,minutes,sec)
+
+bot.add_cog(archcommands.General(bot,config))
 
 bot.run(config['token'])
