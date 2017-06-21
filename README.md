@@ -1,6 +1,8 @@
 # ArchBot
 A bot for searching the ArchWiki, Arch Linux packages, and AUR
+
 The prefix and bot token are changed through a `config.json` file
+
 An example has been provided for you in `config.json.example`
 
 ## Requirements
