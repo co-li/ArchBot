@@ -43,6 +43,11 @@ async def uptime():
         global gametimestarted
         await bot.say(timedelta_str(datetime.datetime.now() - gametimestarted))
 
+@bot.command()
+async def source():
+        """Get the bot's source code"""
+        await bot.say("https://github.com/kingofinfo/ArchBot")
+
 def timedelta_str(dt):
         days = dt.days
         hours, r = divmod(dt.seconds, 3600)

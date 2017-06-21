@@ -45,7 +45,7 @@ class General:
         if(len(pkgs) > 1):
             result = ''
             for cnt, i in enumerate(pkgs):
-                print(i)
+                #print(i)
                 for _cnt, ii in enumerate(pkgsinfos):
                     if i[0] != 'Name' and i[1] != 'Repo' and i[2] != 'Arch':
                         if i[1] != Repo or i[2] != Arch or i[0] != Name:
@@ -116,11 +116,11 @@ class General:
                 ar = await r.json()
                 ar = ar['results']
                 print(len(ar))
-                print(ar)
+                #print(ar)
                 for count, res in enumerate(ar):
-                    print(count)
+                    #print(count)
                     if count < 20:
-                        print(res)
+                        #print(res)
                         if not res['Name'] in pkgs:
                             pkgs.append([res['Name'],'AUR','any'])
                             print([res['Name'],'AUR','any'])
@@ -132,7 +132,7 @@ class General:
         if(len(pkgs) > 1):
             result = ''
             for cnt, i in enumerate(pkgs):
-                print(i)
+                #print(i)
                 if i[0] != 'Name' and i[1] != 'Repo' and i[2] != 'Arch':
                     if i[1] != Repo or i[2] != Arch or i[0] != Name:
                         result += '#' + str(Relevance) + '  Repo: ' + i[1] + '  | Arch: ' + i[2] + '  | Name: ' + i[0] + "\n"
@@ -180,3 +180,7 @@ class General:
                 return await self.bot.say("Previous search was exited.")
         else:
             return await self.bot.say("No results found.")
+
+    @commands.command(pass_context=True)
+    async def wiki(self, ctx, *, query=None):
+        """Search for an article from the ArchWiki"""
