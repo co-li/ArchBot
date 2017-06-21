@@ -7,6 +7,11 @@ class General:
     """
         Commands to search the ArchWiki, Arch package repositories, and AUR
     """
+
+    def __init__(self, bot, config):
+        self.bot = bot
+        self.config = config
+
     @commands.command(pass_context=True)
     async def repos(self, ctx, *, query=None):
         Repo = 'Repo'
@@ -52,11 +57,11 @@ class General:
                                     Relevance += 1
             
             pkgmessage = discord.Embed(title='Reply with the name of one of the following package names within 30 seconds to get more information',description=result)
-            await self.bot.send_message(message.channel, embed=pkgmessage)
+            await self.bot.send_message(ctx.message.channel, embed=pkgmessage)
             
             def reply_check(m):
-	        print('Content of m : ' + m)
-	        for cnt, i in enumerate(pkgs):
+                print('Content of m : ' + m)
+                for cnt, i in enumerate(pkgs):
                     if m == i[0]:
                         print ("Is in the search results")
                         return True
@@ -71,8 +76,8 @@ class General:
 
             if userReply is None:
                 await self.bot.say('Timed out.')
-            elif replyMatch == True
-                for j in pkginfos:
+            elif replyMatch == True:
+                for j in pkgsinfos:
                     print("Ready to send info")
                     if userReply.content in j:
                         print("Found package: ")
@@ -84,6 +89,7 @@ class General:
                         pRepo = j[1]
                         pSourceURL = j[5]
                         pkgdescription = discord.Embed(title="Info on: {0}".format(pName), description='Package Name: {0}\n Version: {1}\n Description: {2}\n Arch: {3}\n Repo: {4}\n Source: {5}'.format(pName, pVersion, pDescription, pArch, pRepo, pSourceURL))
+                        await self.bot.send_message(ctx.message.channel, embed=pkgdescription)
                         return
             else:
                 return await self.bot.say("Previous search was exited.")
