@@ -187,9 +187,65 @@ class General:
         if query is None:
             return await self.bot.say('Invalid amount of arguments passed.')
 
+        articlelist = []
+
         await self.bot.say('Searching for {0} in the ArchWiki.'.format(query))
         
-        async with aiohttp.get('https://wiki.archlinux.org/api.php?action=opensearch&format=json&search{0}'.format(query)) as r:
-        ar = await r.json()
-        ar = ar['{0}'.format(query)]
-        print(ar)
+        async with aiohttp.get('https://wiki.archlinux.org/api.php?action=opensearch&format=json&search={0}'.format(query)) as r:
+            ar = await r.json()
+            print(ar)
+            for i in ar:
+                print (i)
+                articles = ar[1]
+                print(articles)
+                links = ar[3]
+                print(links)
+                for cnt, j in enumerate(articles):
+                    if cnt < 35:
+                        if not j in articlelist:
+                            articlelist.append([j, links[cnt]])
+                    else:
+                        count=-1
+
+        if (len(articlelist) > 1):
+            result = ''
+            Name = []
+            for cnt, i in enumerate(articlelist):
+                if i[0] not in Name:
+                    Name.append(i[0])
+                    result += '#' + str(cnt+1) + ') ' + i[0] + '\n'
+                    print(result)
+
+            articlemessage = discord.Embed(title="Reply with one of the following titles within 30 seconds to get more information", description=result)
+            await self.bot.send_message(ctx.message.channel, embed=articlemessage)
+            
+            def reply_check(m):
+                print('Content of m : ' + m)
+                for cnt, i in enumerate(articlelist):
+                    if m == i[0]:
+                        print ("Is in the search results")
+                        return True
+            userReply = await self.bot.wait_for_message(timeout=30.0, author=ctx.message.author)
+
+            try:
+                replyMatch = reply_check(userReply.content)
+            except Exception as error:
+                print(error)
+                print('Probably a time-out')
+
+            if userReply is None:
+                await self.bot.say('Timed out.')
+            elif replyMatch == True:
+                for j in articlelist:
+                    if userReply.content in j:
+                        print(j)
+                        articleName=userReply.content
+                        articleURL=j[1]
+                        articleDescription = discord.Embed(title="ArchWiki page on: {0}".format(articleName), description='Link: {0} \n'.format(articleURL))
+                        await self.bot.send_message(ctx.message.channel, embed=articleDescription)
+                        return
+            else:
+                return await self.bot.say("Previous search was exited.")
+
+        else:
+            return await self.bot.say("No results found.")
